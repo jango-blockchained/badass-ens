@@ -1,12 +1,12 @@
-# badass-ens
+# shrtr-ens
 
-How we created [badass.domains](https://badass.domains)
+How we created [shrtr.domains](https://shrtr.domains)
 
-# How we set up ENS for decentralized subdomains on our [Handshake](https://handshake.org) TLD .badass
+# How we set up ENS for decentralized subdomains on our [Handshake](https://handshake.org) TLD .shrtr
 
 ## Why do this?
 
-ENS uses the orphan .eth TLD which is not anchored in any root zone.  The .eth TLD is the ISO for Ethiopia, so it probably won't be included in the ICANN root zone.  It is blacklisted on Handshake, so it could be used on Handshake with a plugin.  Other "decentralized" domains like Unstoppable Domains (.crypto or .zil) and Namecoin (.bit) also use orphan TLDs that are not anchored in any root zone.  If they decide and are able to get the TLD in the ICANN root zone, it is centralized and maganed by ICANN.
+ENS uses the orphan .eth TLD which is not anchored in any root zone. The .eth TLD is the ISO for Ethiopia, so it probably won't be included in the ICANN root zone. It is blacklisted on Handshake, so it could be used on Handshake with a plugin. Other "decentralized" domains like Unstoppable Domains (.crypto or .zil) and Namecoin (.bit) also use orphan TLDs that are not anchored in any root zone. If they decide and are able to get the TLD in the ICANN root zone, it is centralized and maganed by ICANN.
 
 By forking ENS and using it on a TLD that is anchored in a decentralized root zone (Handshake), we create truly decentralized subdomains.
 
@@ -14,7 +14,7 @@ By forking ENS and using it on a TLD that is anchored in a decentralized root zo
 
 1. Deploy ENS contracts to Ethereum
 
-The [badass repo](https://github.com/imperviousinc/badass) contains the fork of ENS we deployed for .badass.  You can then [verify the contract source code on etherscan](https://etherscan.io/address/0x36fc69f0983E536D1787cC83f481581f22CCA2A1#code).  Once the code is verified, you can interact with the contracts directly on etherscan, and test, for example, registering a subdomain.
+The [shrtr repo](https://github.com/imperviousinc/shrtr) contains the fork of ENS we deployed for .shrtr. You can then [verify the contract source code on etherscan](https://etherscan.io/address/0x36fc69f0983E536D1787cC83f481581f22CCA2A1#code). Once the code is verified, you can interact with the contracts directly on etherscan, and test, for example, registering a subdomain.
 
 2. Deploy Subgraphs
 
@@ -22,21 +22,21 @@ We forked the [ENS subgraph repo](https://github.com/ensdomains/ens-subgraph) an
 
 3. Launch custom ENS app
 
-We [forked the ens-app](https://github.com/imperviousinc/ens-app) and modified it to work with our deployed contracts from step #1 above.  This allows for an easier to use web UI for registering and managing .badass subdomains.
+We [forked the ens-app](https://github.com/imperviousinc/ens-app) and modified it to work with our deployed contracts from step #1 above. This allows for an easier to use web UI for registering and managing .shrtr subdomains.
 
 4. [hsd](https://github.com/handshake-org/hsd) plugin to resolve domains
 
-In order to resolve .badass domains, you will need to run `hsd` with a plugin that resolves ENS using [HIP-0005](https://github.com/handshake-org/HIPs/pull/10).  We have created [handover](https://github.com/imperviousinc/handover) for this.
+In order to resolve .shrtr domains, you will need to run `hsd` with a plugin that resolves ENS using [HIP-0005](https://github.com/handshake-org/HIPs/pull/10). We have created [handover](https://github.com/imperviousinc/handover) for this.
 
 5. Remove trust
 
-The  .eth version of ENS has [keyholders](https://www.reddit.com/r/ethereum/comments/5z3agy/ens_root_keyholders_announced/), so it is not truly decentralized.  In order to make .badass truly badass (and provably decentralized) we have set the owner of the ENS contract to a burn address 0x0. We used the following geth command for this:
+The .eth version of ENS has [keyholders](https://www.reddit.com/r/ethereum/comments/5z3agy/ens_root_keyholders_announced/), so it is not truly decentralized. In order to make .shrtr truly shrtr (and provably decentralized) we have set the owner of the ENS contract to a burn address 0x0. We used the following geth command for this:
 
 ```
 ENSInstance.setOwner("0x0000000000000000000000000000000000000000","0x0000000000000000000000000000000000000000", {from: eth.accounts[0], gasPrice: 125000000000})
 ```
 
-We have also done the same with the .badass TLD on Handshake, making it unable to be updated, but renewable by anyone, using the following:
+We have also done the same with the .shrtr TLD on Handshake, making it unable to be updated, but renewable by anyone, using the following:
 
 ```
 OPTYPE
